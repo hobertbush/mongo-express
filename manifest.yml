@@ -4,8 +4,8 @@ declared-services:
     label: mongodb
     plan: 100
 applications:
-- name: mongo-express
-  host: mongo-express
+- name: mongo-express-hobert
+  host: mongo-express-hobert
   memory: 128M
   services:
     - db-mongo
