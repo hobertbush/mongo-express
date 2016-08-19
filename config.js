@@ -16,16 +16,6 @@ if (process.env.VCAP_SERVICES) {
   if (env[dbLabel]) {
     mongo = env[dbLabel][0].credentials;
   }
-} else {
-  mongo = {
-    db:       'db',
-    host:     'localhost',
-    password: 'pass',
-    port:     27017,
-    ssl:      false,
-    url:      'mongodb://localhost:27017/db',
-    username: 'admin',
-  };
 }
 
 module.exports = {
