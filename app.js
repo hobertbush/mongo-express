@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+/*eslint-env node */
 'use strict';
 
 const clc             = require('cli-color');
@@ -25,7 +26,7 @@ let sslOptions;
 notifier.notify();
 
 try {
-  config = utils.deepmerge(require('./config.default'), require('./config'));
+  config = utils.deepmerge(require('./config.default'), require('./config.js'));
 } catch (e) {
   if (e.code === 'MODULE_NOT_FOUND') {
     console.log('No custom config.js found, loading config.default.js');

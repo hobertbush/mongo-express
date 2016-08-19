@@ -1,4 +1,5 @@
-https://github.com/hobertbush/mongo-express'use strict';
+/*eslint-env node */
+'use strict';
 
 var mongo;
 var url = require('url');
