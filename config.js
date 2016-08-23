@@ -12,21 +12,37 @@ if (typeof process.env.MONGODB_PORT === 'string') {
 }
 
 // Accesing Bluemix variable to get MongoDB info
-if (process.env.VCAP_SERVICES) {
-  var dbLabel = 'mongodb-2.4';
+if (typeof process.env.VCAP_SERVICES === 'string') {
+  var dbName = 'mongodb';
   var env = JSON.parse(process.env.VCAP_SERVICES);
-  if (env[dbLabel]) {
-    mongo = env[dbLabel][0].credentials;
+  if (env[dbName]) {
+    console.log(env);
+    console.log("Print Mongo");
+    mongo = env[dbName][0].credentials;
+    console.log("Print" + mongo.host);
+
+
   }
+} else {
+  mongo = {
+    db:       'db',
+    host:     'localhost',
+    password: 'pass',
+    port:     27017,
+    ssl:      false,
+    url:      'mongodb://localhost:27017/db',
+    username: 'admin',
+  };
 }
 
 module.exports = {
   mongodb: {
-    server: process.env.ME_CONFIG_MONGODB_SERVER  || "mongo.host",
-    port:   process.env.ME_CONFIG_MONGODB_PORT    || "mongo.port",
+
+    server: process.env.ME_CONFIG_MONGODB_SERVER  || mongo.host,
+    port:   process.env.ME_CONFIG_MONGODB_PORT    || mongo.port,
 
     //ssl: connect to the server using secure SSL
-    ssl: process.env.ME_CONFIG_MONGODB_SSL || "mongo.ssl",
+    ssl: process.env.ME_CONFIG_MONGODB_SSL || mongo.ssl,
 
     //sslValidate: validate mongod server certificate against CA
     sslValidate: process.env.ME_CONFIG_MONGODB_SSLVALIDATE || true,
@@ -53,9 +69,9 @@ module.exports = {
        * Add as many databases as you want!
        */
       {
-        database: process.env.ME_CONFIG_MONGODB_AUTH_DATABASE || "mongo.db",
-        username: process.env.ME_CONFIG_MONGODB_AUTH_USERNAME || "mongo.username",
-        password: process.env.ME_CONFIG_MONGODB_AUTH_PASSWORD || "mongo.password",
+        database: process.env.ME_CONFIG_MONGODB_AUTH_DATABASE || mongo.db,
+        username: process.env.ME_CONFIG_MONGODB_AUTH_USERNAME || mongo.username,
+        password: process.env.ME_CONFIG_MONGODB_AUTH_PASSWORD || mongo.password,
       },
     ],
 
