@@ -21,11 +21,11 @@ if (process.env.VCAP_SERVICES) {
 
 module.exports = {
   mongodb: {
-    server: process.env.ME_CONFIG_MONGODB_SERVER  || mongo.host,
-    port:   process.env.ME_CONFIG_MONGODB_PORT    || mongo.port,
+    server: process.env.ME_CONFIG_MONGODB_SERVER  || "mongo.host",
+    port:   process.env.ME_CONFIG_MONGODB_PORT    || "mongo.port",
 
     //ssl: connect to the server using secure SSL
-    ssl: process.env.ME_CONFIG_MONGODB_SSL || mongo.ssl,
+    ssl: process.env.ME_CONFIG_MONGODB_SSL || "mongo.ssl",
 
     //sslValidate: validate mongod server certificate against CA
     sslValidate: process.env.ME_CONFIG_MONGODB_SSLVALIDATE || true,
@@ -52,9 +52,9 @@ module.exports = {
        * Add as many databases as you want!
        */
       {
-        database: process.env.ME_CONFIG_MONGODB_AUTH_DATABASE || mongo.db,
-        username: process.env.ME_CONFIG_MONGODB_AUTH_USERNAME || mongo.username,
-        password: process.env.ME_CONFIG_MONGODB_AUTH_PASSWORD || mongo.password,
+        database: process.env.ME_CONFIG_MONGODB_AUTH_DATABASE || "mongo.db",
+        username: process.env.ME_CONFIG_MONGODB_AUTH_USERNAME || "mongo.username",
+        password: process.env.ME_CONFIG_MONGODB_AUTH_PASSWORD || "mongo.password",
       },
     ],
 
