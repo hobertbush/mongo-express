@@ -16,11 +16,7 @@ if (typeof process.env.VCAP_SERVICES === 'string') {
   var dbName = 'mongodb';
   var env = JSON.parse(process.env.VCAP_SERVICES);
   if (env[dbName]) {
-    console.log(env);
-    console.log("Print Mongo");
     mongo = env[dbName][0].credentials;
-    console.log("Print" + mongo.host);
-
 
   }
 } else {
